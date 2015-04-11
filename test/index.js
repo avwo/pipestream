@@ -1,5 +1,4 @@
 var PipeStream = require('../');
-var PipeStreamTransform = PipeStream.Transform;
 var Transform = require('stream').Transform;
 
 /**测试prepend, addHead, add, addTail, append方法**/
