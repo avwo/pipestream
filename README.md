@@ -1,2 +1,6 @@
 # pipestream
-handle pipe stream
+node自带的stream.pipe方法有下面几个不足：
+
+1. 不能将多个串联的stream作为一个对象传递，必须同时记住stream串的首尾对象以方便pipe或被pipe到其它stream串中
+2. 不能在stream串动态插入stream，有些情况我们需要通过异步接口判断是否把某个stream串联到stream串中
+3. 不能随意将stream插入stream串中的某个位置，只能按顺序串联stream对象
