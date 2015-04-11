@@ -126,7 +126,9 @@ pipestream用于管理stream拼接串，无需按顺序依次pipe stream，且�
 5. `pipeStreamObj.add(dest, pipeOpts)` 把dest放到stream串中间最后一个位置，dest同prepend方法
 6. `pipeStreamObj.addTail(dest, pipeOpts)` 把dest放到stream串尾部第一个位置，dest同prepend方法
 7. `pipeStreamObj.append(dest, pipeOpts)` 把dest放到stream串尾部最后一个位置，dest同prepend方法
-8. `PipeStream.Transform`  pipeStreamObj.add(`new PipeStream.Transform()`)相当于pipeStreamObj.add(`new require('stream').PassThrough({objectMode: 1}), {end: false}`)，且在执行PipeStream.Transform.prototype._transform(chunk, encoding, cb)方法时，如果传过来的chunk为null，则表示这是最后一个回调，执行该回调后流将结束，无需再监听end事件。
+8. `pipeStreamObj.pipe(dest, pipeOpts)` 同stream.pipe
+9. `pipeStreamObj.dest(dest, pipeOpts)` 同stream.pipe，如果不传dest参数，则将自动创建一个PassThrough对象并返回，可用于监听data，end事件
+10. `PipeStream.Transform`  pipeStreamObj.add(`new PipeStream.Transform()`)相当于pipeStreamObj.add(`new require('stream').PassThrough({objectMode: 1}), {end: false}`)，且在执行PipeStream.Transform.prototype._transform(chunk, encoding, cb)方法时，如果传过来的chunk为null，则表示这是最后一个回调，执行该回调后流将结束，无需再监听end事件。
 
 		
 
