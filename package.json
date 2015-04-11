@@ -1,0 +1,19 @@
+{
+  "name": "pipestream",
+  "description": "handle pipe stream",
+  "version": "0.0.2",
+  "author": "avenwu <avenwu@vip.qq.com>",
+  "contributors": [],
+  "license": "MIT",
+  "keywords": [
+    "stream",
+    "pipe",
+    "transform"
+  ],
+  "scripts": {
+  	"test": "node test"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
