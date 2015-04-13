@@ -16,8 +16,10 @@ pipestream用于管理stream拼接串，无需按顺序依次pipe stream，且�
 		
 		var pipeStream = new PipeStream();
 		
-		//process.stdin.pipe(pipeStream);
-		pipeStream.dest(process.stdout);
+		//1. //pipeStream.wrapStream(process.stdin); //PipeStream.wrap(process.stdin);
+		pipeStream.wrapStream(process.stdout, true); //PipeStream.wrap(process.stdout, true);
+		//2. //process.stdin.pipe(pipeStream);
+		//3. //pipeStream.dest(process.stdout);
 		
 		var prepend = new Transform();
 		prepend._transform = function(chunk, encoding, cb) {
@@ -120,8 +122,11 @@ pipestream用于管理stream拼接串，无需按顺序依次pipe stream，且�
 			}, 5000);
 		});
 		
-		//pipeStream.pipe(process.stdout);
-		pipeStream.src(process.stdin);
+		//1. //process.stdin.pipe(process.stdout);
+		process.stdout.src(process.stdin);
+		//2. //pipeStream.pipe(process.stdout);
+		//3. //pipeStream.src(process.stdin);
+		
 		//process.stdin.pipe(pipeStream).pipe(process.stdout);
 
 
@@ -137,6 +142,8 @@ pipestream用于管理stream拼接串，无需按顺序依次pipe stream，且�
 8. `pipeStreamObj.dest(dest, pipeOpts)` 相当于`pipeStreamObj.pipe`，这个要与`pipeStreamObj.src`一起使用，用于从dest-->src的顺序pipe stream
 9. `pipeStreamObj.src(src, pipeOpts)`（默认`pipeOpts.pipeError = true`） 相当于`src.pipe(pipeStreamObj, pipeOpts)`，这个与pipeStreamObj.dest一起使用，执行这个方法后stream串将创建完毕，无法再往该stream串插入stream对象。。
 10. `PipeStream.Transform`  pipeStreamObj.add(`new PipeStream.Transform()`)相当于pipeStreamObj.add(`new require('stream').PassThrough({objectMode: 1}), {end: false}`)，且在执行PipeStream.Transform.prototype._transform(chunk, encoding, cb)方法时，如果传过来的chunk为null，则表示这是最后一个回调，执行该回调后流将结束，无需再监听end事件。
+11. `pipeStreamObj.wrapStream(stream, pipeOpts, dest)` `PipeStream.wrap(stream, pipeOpts, dest)` 把stream转成pipeStream，dest表示为用于被pipe的stream，看示例。
+12. `PipeStream.pipe(stream, pipeOpts)` 默认设置{end: false}，且会加入ending事件。
 
 		
 

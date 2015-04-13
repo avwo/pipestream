@@ -5,8 +5,10 @@ var Transform = require('stream').Transform;
 
 var pipeStream = new PipeStream();
 
-//process.stdin.pipe(pipeStream);
-pipeStream.dest(process.stdout);
+//1. //pipeStream.wrapStream(process.stdin); //PipeStream.wrap(process.stdin);
+pipeStream.wrapStream(process.stdout, true); //PipeStream.wrap(process.stdout, true);
+//2. //process.stdin.pipe(pipeStream);
+//3. //pipeStream.dest(process.stdout);
 
 var prepend = new Transform();
 prepend._transform = function(chunk, encoding, cb) {
@@ -109,6 +111,9 @@ pipeStream.prepend(function(src, next) {
 	}, 5000);
 });
 
-//pipeStream.pipe(process.stdout);
-pipeStream.src(process.stdin);
+//1. //process.stdin.pipe(process.stdout);
+process.stdout.src(process.stdin);
+//2. //pipeStream.pipe(process.stdout);
+//3. //pipeStream.src(process.stdin);
+
 //process.stdin.pipe(pipeStream).pipe(process.stdout);
