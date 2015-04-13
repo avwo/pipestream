@@ -123,14 +123,14 @@ pipestream用于管理stream拼接串，无需按顺序依次pipe stream，且�
 #API Reference
 
 1. `PipeStream(options)` 跟正常的stream的options参数唯一区别是PipeStream多了一个pipeError的属性，用来标示是否整个pipeStream里面的stream串出现异常时把异常都传递给pipeStream.pipe(dest)里面的dest对象处理。
-2. `pipeStreamObj.src(src, pipeOpts)` 相当于`src.pipe(pipeStreamObj, pipeOpts)`，且如果pipeStreamObj设置了pipeError为true，则src出错时将把错误传递给最后的dest处理。
-3. `pipeStreamObj.prepend(dest, pipeOpts)` 把dest放到stream串头部第一个位置，dest可以为一个回调方法，pipeStream会自动执行该回调方法，其上一个stream及执行下一步的回调，具体使用见Example
-4. `pipeStreamObj.addHead(dest, pipeOpts)` 把dest放到stream串头部最后一个位置，dest同prepend方法
-5. `pipeStreamObj.add(dest, pipeOpts)` 把dest放到stream串中间最后一个位置，dest同prepend方法
-6. `pipeStreamObj.addTail(dest, pipeOpts)` 把dest放到stream串尾部第一个位置，dest同prepend方法
-7. `pipeStreamObj.append(dest, pipeOpts)` 把dest放到stream串尾部最后一个位置，dest同prepend方法
-8. `pipeStreamObj.pipe(dest, pipeOpts)` 同stream.pipe
-9. `pipeStreamObj.dest(dest, pipeOpts)` 同stream.pipe，如果不传dest参数，则将自动创建一个PassThrough对象并返回，可用于监听data，end事件
+2. `pipeStreamObj.prepend(dest, pipeOpts)` 把dest放到stream串头部第一个位置，dest可以为一个回调方法，pipeStream会自动执行该回调方法，其上一个stream及执行下一步的回调，具体使用见Example
+3. `pipeStreamObj.addHead(dest, pipeOpts)` 把dest放到stream串头部最后一个位置，dest同prepend方法
+4. `pipeStreamObj.add(dest, pipeOpts)` 把dest放到stream串中间最后一个位置，dest同prepend方法
+5. `pipeStreamObj.addTail(dest, pipeOpts)` 把dest放到stream串尾部第一个位置，dest同prepend方法
+6. `pipeStreamObj.append(dest, pipeOpts)` 把dest放到stream串尾部最后一个位置，dest同prepend方法
+7. `pipeStreamObj.pipe(dest, pipeOpts)` 同stream.pipe，执行这个方法后stream串将创建完毕，无法再往该stream串插入stream对象。
+8. `pipeStreamObj.dest(dest, pipeOpts)` 相当于`pipeStreamObj.pipe`，这个要与`pipeStreamObj.src`一起使用，用于从dest-->src的顺序pipe stream
+9. `pipeStreamObj.src(src, pipeOpts)`（默认`pipeOpts.pipeError = true`） 相当于`src.pipe(pipeStreamObj, pipeOpts)`，这个与pipeStreamObj.dest一起使用，执行这个方法后stream串将创建完毕，无法再往该stream串插入stream对象。。
 10. `PipeStream.Transform`  pipeStreamObj.add(`new PipeStream.Transform()`)相当于pipeStreamObj.add(`new require('stream').PassThrough({objectMode: 1}), {end: false}`)，且在执行PipeStream.Transform.prototype._transform(chunk, encoding, cb)方法时，如果传过来的chunk为null，则表示这是最后一个回调，执行该回调后流将结束，无需再监听end事件。
 
 		
