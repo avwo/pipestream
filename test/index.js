@@ -5,6 +5,7 @@ var Transform = require('stream').Transform;
 
 var pipeStream = new PipeStream();
 
+//process.stdin.pipe(pipeStream);
 pipeStream.dest(process.stdout);
 
 var prepend = new Transform();
@@ -108,5 +109,6 @@ pipeStream.prepend(function(src, next) {
 	}, 5000);
 });
 
+//pipeStream.pipe(process.stdout);
 pipeStream.src(process.stdin);
 //process.stdin.pipe(pipeStream).pipe(process.stdout);
