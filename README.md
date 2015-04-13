@@ -9,7 +9,7 @@ pipestream用于管理stream拼接串，无需按顺序依次pipe stream，且�
 - `pipeStream.xxx(dest, pipeOpts)` 如果设置了`pipeOpts = {end: false}`，上一个流执行结束后不会触发当前dest的end事件，但会触发dest的ending事件
 - `pipeStream.pipe`一定要在最后调用，因为执行完pipeStream.pipe，再执行 `prepend, addHead`, `add`, `addTail`, `append` 对当前的stream串不起作用。
 	
-		var PipeStream = require('../');
+		var PipeStream = require('pipestream');
 		var Transform = require('stream').Transform;
 		
 		/**测试prepend, addHead, add, addTail, append方法**/
