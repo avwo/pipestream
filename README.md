@@ -1,6 +1,9 @@
 # pipestream
 pipestream用于管理stream拼接串，无需按顺序依次pipe stream，且可以通过回调的方式动态插入stream，通过pipestream拼接的stream串可以作为一个对象传递。
 
+# Installation
+	$ npm install pipestream
+
 #Example
 
 - `pipeStream.xxx(dest, pipeOpts)` 如果设置了`pipeOpts = {end: false}`，上一个流执行结束后不会触发当前dest的end事件，但会触发dest的ending事件
