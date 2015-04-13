@@ -135,7 +135,7 @@ pipestream用于管理stream拼接串，无需按顺序依次pipe stream，且�
 1. `PipeStream(options)` 跟正常的stream的options参数唯一区别是PipeStream多了一个pipeError的属性，用来标示是否整个pipeStream里面的stream串出现异常时把异常都传递给pipeStream.pipe(dest)里面的dest对象处理。
 2. `pipeStreamObj.prepend(dest, pipeOpts)` 把dest放到stream串头部第一个位置，dest可以为一个回调方法，pipeStream会自动执行该回调方法，其上一个stream及执行下一步的回调，具体使用见Example
 3. `pipeStreamObj.addHead(dest, pipeOpts)` 把dest放到stream串头部最后一个位置，dest同prepend方法
-4. `pipeStreamObj.add(dest, pipeOpts)` 把dest放到stream串中间最后一个位置，dest同prepend方法
+4. `pipeStreamObj.add(dest, pipeOpts)`、 `pipeStreamObj.insert(dest, pipeOpts, index)` 把dest放到stream串中间最后一个位置，dest同prepend方法
 5. `pipeStreamObj.addTail(dest, pipeOpts)` 把dest放到stream串尾部第一个位置，dest同prepend方法
 6. `pipeStreamObj.append(dest, pipeOpts)` 把dest放到stream串尾部最后一个位置，dest同prepend方法
 7. `pipeStreamObj.pipe(dest, pipeOpts)` 同stream.pipe，执行这个方法后stream串将创建完毕，无法再往该stream串插入stream对象。
