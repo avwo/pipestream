@@ -143,7 +143,7 @@ pipestream用于管理stream拼接串，无需按顺序依次pipe stream，且�
 9. `pipeStreamObj.src(src, pipeOpts)` 相当于`src.pipe(pipeStreamObj, pipeOpts)`，执行该方法后，不能再调用prepend、append、add、addHead、addTail方法
 10. pipe(pipeStreamObj, pipeOpts)`，这个与pipeStreamObj.dest一起使用，执行这个方法后stream串将创建完毕，无法再往该stream串插入stream对象。。
 10. `PipeStream.Transform`  pipeStreamObj.add(`new PipeStream.Transform()`)相当于pipeStreamObj.add(`new require('stream').PassThrough({objectMode: 1}), {end: false}`)，且在执行PipeStream.Transform.prototype._transform(chunk, encoding, cb)方法时，如果传过来的chunk为null，则表示这是最后一个回调，执行该回调后流将结束，无需再监听end事件。
-11. `pipeStreamObj.wrapStream(stream, dest, pipeOpts)` `PipeStream.wrap(stream, dest, pipeOpts)` 把stream转成pipeStream，dest表示为用于被pipe的stream，看示例。
+11. `pipeStreamObj.wrapStream(stream, dest, pipeOpts)` `PipeStream.wrap(stream, dest, options)` 把stream转成pipeStream，dest表示为用于被pipe的stream，看示例。
 12. `PipeStream.pipe(stream, pipeOpts)` 默认设置{end: false}，且会加入ending事件。
 
 		
