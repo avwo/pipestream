@@ -1,19 +1,23 @@
 {
-  "name": "pipestream",
-  "description": "handle pipe stream",
-  "version": "0.0.22",
-  "author": "avenwu <avenwu@vip.qq.com>",
-  "contributors": [],
-  "license": "MIT",
-  "keywords": [
-    "stream",
-    "pipe",
-    "transform"
-  ],
-  "scripts": {
-  	"test": "node test"
-  },
-  "engines": {
-    "node": ">= 0.10.0"
-  }
+	"name": "pipestream",
+	"description": "handle pipe stream",
+	"version": "0.0.23",
+	"author": "avenwu <avenwu@vip.qq.com>",
+	"contributors": [],
+	"license": "MIT",
+	"keywords": [
+		"stream",
+		"pipe",
+		"transform"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/avwo/pipestream.git"
+	},
+	"scripts": {
+		"test": "node test"
+	},
+	"engines": {
+	"node": ">= 0.10.0"
+	}
 }
