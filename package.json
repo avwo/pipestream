@@ -15,9 +15,14 @@
 		"url": "https://github.com/avwo/pipestream.git"
 	},
 	"scripts": {
-		"test": "node test"
+		"test": "node test",
+		"lint": "eslint ./lib ./test *.js",
+    "lintfix": "eslint --fix ./lib ./test *.js"
 	},
 	"engines": {
 	"node": ">= 0.10.0"
-	}
+	},
+	"devDependencies": {
+    "eslint": "^2.8.0"
+  }
 }
