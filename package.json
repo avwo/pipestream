@@ -1,7 +1,7 @@
 {
 	"name": "pipestream",
 	"description": "handle pipe stream",
-	"version": "0.5.1",
+	"version": "0.5.2",
 	"author": "avenwu <avenwu@vip.qq.com>",
 	"contributors": [],
 	"license": "MIT",
